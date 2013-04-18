@@ -9,8 +9,8 @@ tools supporting these file formats.
 Requirements
 ------------
 
- # Python > 2.6
- # networkx
+* Python > 2.6
+* networkx
 
 Usage
 -----
@@ -37,6 +37,18 @@ Usage
           -n OUTFILENAME, --outfilename=OUTFILENAME
                                 output filename (default is out.<format>)
 
+
+### Use case(s)
+
+If you have a specific event (e.g. from OSINT or from a vendor providing a large set of IOCs) and you would like to see the direct neighbors to this event sharing
+the same attributes. As example, you want to see the shared attributes from event 310 with the other event with a maximum distance of 2 hops:
+
+    misp-graph.py -o dot -c 310 -r 2 -n event310.dot
+
+
+If you would like to make a quick visualization of your MISP export, there will be a file called out.dot containing the XML in dot format.
+
+    misp-graph -f yourdump.xml
 
 License
 -------
