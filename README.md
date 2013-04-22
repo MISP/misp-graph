@@ -6,6 +6,8 @@ the events and its attributes. The export format currently supported are dot fil
 and gexf file Graph Exchange XML Format. Graph files can then be used with Gephi or another
 tools supporting these file formats.
 
+![A Sample Graph visualized with Gephi](https://raw.github.com/MISP/misp-graph/master/sample/sample.png)
+
 Requirements
 ------------
 
