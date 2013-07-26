@@ -11,6 +11,7 @@
 from optparse import OptionParser
 import sys
 import networkx
+import urllib2
 
 usage = "usage: %s" % sys.argv[0]
 parser = OptionParser(usage)
@@ -37,6 +38,13 @@ except ImportError:
         except ImportError:
           print("Failed to import ElementTree from any known place")
 
+def fetch(url=None, auth=None):
+    if url is None or auth is None:
+        return False
+    req = urllib2.Request(url+"/events/xml/"+auth)
+    r = urllib2.urlopen(req)
+    v = r.read()
+    return v
 
 parser.add_option("-d", "--debug", dest="debug", action="store_true", default=False, help="debug messages on stderr")
 parser.add_option("-t", "--type", dest="recordtype", help="type of the record (default record is 'domain')", default="domain")
@@ -45,10 +53,17 @@ parser.add_option("-c", "--center", dest="center", help="center node (could be a
 parser.add_option("-r", "--radius", dest="radius", help="maximum distance between node", default=2)
 parser.add_option("-o", "--outputformat", dest="outputformat", help="format of the graph output dot (graphviz), gexf (default format is dot)", default="dot")
 parser.add_option("-n", "--outfilename", dest="outfilename", help="output filename (default is out.<format>)", default="out.")
+parser.add_option("-u", "--url", dest="url", help="url to access MISP", default=None)
+parser.add_option("-a", "--authkey", dest="authkey", help="authentication key to access MISP", default=None)
+
 (options, args) = parser.parse_args()
 
 
-tree = etree.parse(options.filename)
+if options.url is None or options.authkey is None:
+    tree = etree.parse(options.filename)
+else:
+    tree = etree.fromstring(fetch(url=options.url,auth=options.authkey))
+
 g = networkx.Graph()
 
 typematch = False
