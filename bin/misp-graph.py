@@ -75,7 +75,7 @@ for element in tree.iter():
         g.add_node(eid)
    if element.tag == "type" and element.text == options.recordtype:
         typematch = True
-   if typematch and element.tag == "value1":
+   if typematch and element.tag == "value":
         if options.debug:
             sys.stderr.write(element.text+"edge added to "+ eid+ "\n")
         g.add_edge(eid,element.text)
