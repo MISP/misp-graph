@@ -4,7 +4,8 @@ misp-graph
 misp-graph is a tool to analyze a MISP XML export and generate graphs from
 the events and its attributes. The export format currently supported are dot files (Graphviz)
 and gexf file Graph Exchange XML Format. Graph files can then be used with Gephi or another
-tools supporting these file formats.
+tools supporting these file formats. misp-graph can be used directed with the REST API of MISP or using
+an XML dump.
 
 ![A Sample Graph visualized with Gephi](https://raw.github.com/MISP/misp-graph/master/sample/sample.png)
 
@@ -17,7 +18,7 @@ Requirements
 Usage
 -----
 
-        Usage: ./bin/misp-graph.py
+        Usage: misp-graph.py
 
         Options:
           -h, --help            show this help message and exit
@@ -38,6 +39,9 @@ Usage
                                 (default format is dot)
           -n OUTFILENAME, --outfilename=OUTFILENAME
                                 output filename (default is out.<format>)
+          -u URL, --url=URL     url to access MISP
+          -a AUTHKEY, --authkey=AUTHKEY
+                                authentication key to access MISP
 
 
 ### Use case(s)
