@@ -71,7 +71,10 @@ for element in tree.iter():
    if element.tag == "event_id":
         if options.debug:
             sys.stderr.write(element.text+"node added\n")
-        eid = element.text
+        if options.url:
+            eid = options.url+"/events/view/"+element.text
+        else:
+            eid = "Event "+element.text
         g.add_node(eid)
    if element.tag == "type" and element.text == options.recordtype:
         typematch = True
