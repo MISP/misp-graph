@@ -95,6 +95,6 @@ else:
     outfilename = options.outfilename+options.outputformat
 
 if options.outputformat == "dot":
-    networkx.write_dot(g, outfilename)
+    networkx.drawing.nx_pydot.write_dot(g, outfilename)
 elif options.outputformat == "gexf":
     networkx.write_gexf(g, outfilename)
