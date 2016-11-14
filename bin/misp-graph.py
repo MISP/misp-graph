@@ -11,6 +11,8 @@
 from optparse import OptionParser
 import sys
 import networkx
+from networkx.drawing.nx_pydot import write_dot
+from networkx.drawing.nx_agraph import write_dot
 import urllib2
 
 usage = "usage: %s" % sys.argv[0]

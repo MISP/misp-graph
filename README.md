@@ -14,6 +14,7 @@ Requirements
 
 * Python > 2.6
 * networkx
+* pydotplus (supports networkx changes to module_dot https://github.com/networkx/networkx/issues/1984)
 
 Usage
 -----
