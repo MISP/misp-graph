@@ -11,6 +11,8 @@
 from optparse import OptionParser
 import sys
 import networkx
+from networkx.drawing.nx_pydot import write_dot
+from networkx.drawing.nx_agraph import write_dot
 import urllib2
 
 usage = "usage: %s" % sys.argv[0]
@@ -93,6 +95,6 @@ else:
     outfilename = options.outfilename+options.outputformat
 
 if options.outputformat == "dot":
-    networkx.write_dot(g, outfilename)
+    networkx.drawing.nx_pydot.write_dot(g, outfilename)
 elif options.outputformat == "gexf":
     networkx.write_gexf(g, outfilename)
