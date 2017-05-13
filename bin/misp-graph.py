@@ -43,7 +43,8 @@ except ImportError:
 def fetch(url=None, auth=None):
     if url is None or auth is None:
         return False
-    req = urllib2.Request(url+"/events/xml/"+auth)
+    req = urllib2.Request(url+"/events/xml/download")
+    req.add_header("Authorization","{}".format(auth))
     r = urllib2.urlopen(req)
     v = r.read()
     return v
@@ -55,8 +56,8 @@ parser.add_option("-c", "--center", dest="center", help="center node (could be a
 parser.add_option("-r", "--radius", dest="radius", help="maximum distance between node", default=2)
 parser.add_option("-o", "--outputformat", dest="outputformat", help="format of the graph output dot (graphviz), gexf (default format is dot)", default="dot")
 parser.add_option("-n", "--outfilename", dest="outfilename", help="output filename (default is out.<format>)", default="out.")
-parser.add_option("-u", "--url", dest="url", help="url to access MISP", default=None)
-parser.add_option("-a", "--authkey", dest="authkey", help="authentication key to access MISP", default=None)
+parser.add_option("-u", "--url", dest="url", help="url to access MISP",default=None)
+parser.add_option("-a", "--authkey", dest="authkey", help="authentication key to access MISP",default=None)
 
 (options, args) = parser.parse_args()
 
